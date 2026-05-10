@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:id="@+id/layoutHomeUser">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ===== HEADER USER ===== -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/bg_header_user"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BodyGoals"
+                        android:textColor="@color/white"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Halo, Selamat datang👋"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="2dp"/>
+
+                    <TextView
+                        android:id="@+id/namaUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#C8E6C9"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"/>
+                </LinearLayout>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_user"
+                    android:elevation="4dp"
+                    android:padding="2dp"
+                    android:background="#8CFFFFFF"
+                    app:shapeAppearanceOverlay="@style/CircleImageView"
+                    app:strokeColor="@android:color/white"
+                    app:strokeWidth="2dp"/>
+            </RelativeLayout>
+
+            <!-- ===== KONDISI TUBUH ===== -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="-20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kondisi Tubuhmu" android:textColor="@color/text_primary" android:textSize="15sp" android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_user_update"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_hint"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        android:gravity="center_vertical">
+
+                        <!-- Tinggi Badan -->
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                            <TextView
+                                android:id="@+id/tv_user_tb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="170"
+                                android:textColor="@color/text_primary"
+                                android:textSize="26sp"
+                                android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tinggi Badan (cm)" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <!-- Berat Badan -->
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                            <TextView
+                                android:id="@+id/tv_user_bb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="72.5"
+                                android:textColor="@color/text_primary"
+                                android:textSize="26sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Berat Badan (kg)" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <!-- BMI Gauge -->
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                            <com.spk.bodygoals.BmiGaugeView
+                                android:id="@+id/bmiGaugeUser"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ===== CARD MOTIVASI ===== -->
+            <LinearLayout
+                android:id="@+id/menuRekomendasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_card_motivasi"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:padding="16dp">
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Capai BodyGoals-mu!" android:textColor="@color/user_primary_dark" android:textSize="15sp" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Silahkan klik disini untuk memulai"
+                        android:textColor="@color/user_primary"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_diet"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+            <!-- ===== MENU UTAMA USER ===== -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menu Utama" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" android:layout_marginBottom="12dp"/>
+
+                    <!-- Row 1 -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="3" android:layout_marginBottom="12dp">
+
+                        <LinearLayout android:id="@+id/menuMakananUser" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="12dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_today" android:background="@drawable/bg_icon_green" android:padding="7dp"
+                                app:tint="@color/icon_green" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menu Makanan" android:textColor="@color/text_primary" android:textSize="11sp" android:textStyle="bold" android:gravity="center" android:layout_marginTop="6dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lihat menu makanan" android:textColor="@color/text_secondary" android:textSize="9sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuProgramUser" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="12dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_agenda" android:background="@drawable/bg_icon_orange" android:padding="7dp"
+                                app:tint="@color/icon_orange" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Program Saya" android:textColor="@color/text_primary" android:textSize="11sp" android:textStyle="bold" android:gravity="center" android:layout_marginTop="6dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rencana diet saya" android:textColor="@color/text_secondary" android:textSize="9sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuProgressUser" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="12dp" android:layout_marginStart="4dp">
+                            <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_sort_by_size" android:background="@drawable/bg_icon_blue" android:padding="7dp"
+                                app:tint="@color/icon_blue" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Progress" android:textColor="@color/text_primary" android:textSize="11sp" android:textStyle="bold" android:gravity="center" android:layout_marginTop="6dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pantau perkembangan" android:textColor="@color/text_secondary" android:textSize="9sp" android:gravity="center"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="3">
+
+                        <LinearLayout android:id="@+id/menuArtikelUser" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="12dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_info_details" android:background="@drawable/bg_icon_blue" android:padding="7dp"
+                                app:tint="@color/icon_blue" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Artikel &amp; Tips" android:textColor="@color/text_primary" android:textSize="11sp" android:textStyle="bold" android:gravity="center" android:layout_marginTop="6dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Edukasi kesehatan" android:textColor="@color/text_secondary" android:textSize="9sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuPengingatUser" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="12dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_agenda" android:background="@drawable/bg_icon_orange" android:padding="7dp"
+                                app:tint="@color/icon_orange" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pengingat" android:textColor="@color/text_primary" android:textSize="11sp" android:textStyle="bold" android:gravity="center" android:layout_marginTop="6dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pengingat harian" android:textColor="@color/text_secondary" android:textSize="9sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuProfilUser" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="12dp" android:layout_marginStart="4dp">
+                            <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_myplaces" android:background="@drawable/bg_icon_green" android:padding="7dp"
+                                app:tint="@color/icon_green" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Profil" android:textColor="@color/text_primary" android:textSize="11sp" android:textStyle="bold" android:gravity="center" android:layout_marginTop="6dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Data profil saya" android:textColor="@color/text_secondary" android:textSize="9sp" android:gravity="center"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

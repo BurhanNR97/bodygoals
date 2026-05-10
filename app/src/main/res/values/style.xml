@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Card Style -->
+    <style name="CardStyle">
+        <item name="android:background">@drawable/bg_card</item>
+        <item name="android:padding">@dimen/margin_base</item>
+        <item name="android:layout_marginBottom">@dimen/margin_sm</item>
+    </style>
+
+    <!-- Stat Number Text -->
+    <style name="TextStatNumber">
+        <item name="android:textSize">@dimen/text_xxl</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Stat Label Text -->
+    <style name="TextStatLabel">
+        <item name="android:textSize">@dimen/text_xs</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Section Title -->
+    <style name="TextSectionTitle">
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Menu Item Label -->
+    <style name="TextMenuLabel">
+        <item name="android:textSize">@dimen/text_sm</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Menu Item Sublabel -->
+    <style name="TextMenuSublabel">
+        <item name="android:textSize">@dimen/text_xs</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Header Title -->
+    <style name="TextHeaderTitle">
+        <item name="android:textSize">@dimen/text_xxl</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Header Subtitle -->
+    <style name="TextHeaderSubtitle">
+        <item name="android:textSize">@dimen/text_sm</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Bottom Nav Item Active -->
+    <style name="BottomNavActive">
+        <item name="android:textSize">@dimen/text_xs</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CircleImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+</resources>

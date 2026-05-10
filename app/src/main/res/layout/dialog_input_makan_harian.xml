@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialogInputMakanRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:background="@drawable/bg_card_login">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Input Makanan Hari Ini"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih makanan yang sudah dikonsumsi. Bisa lebih dari satu makanan."
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tinggi Badan"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/edDialogTB"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input"
+            android:hint="Masukkan tinggi badan"
+            android:inputType="numberDecimal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Berat Badan Hari Ini"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/edDialogBB"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input"
+            android:hint="Masukkan berat badan hari ini"
+            android:inputType="numberDecimal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvDialogBMIInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BMI akan dihitung setelah disimpan"
+            android:textSize="12sp"
+            android:textColor="@color/user_primary"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="14dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Riwayat Penyakit"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/edDialogPenyakit"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Pilih riwayat penyakit"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Riwayat penyakit akan digunakan sistem untuk menyesuaikan rekomendasi menu."
+            android:textSize="11sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="14dp" />
+
+        <!-- Sarapan -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sarapan"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/edDialogSarapan"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Pilih makanan sarapan"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvDialogKaloriSarapan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 kkal"
+            android:textSize="12sp"
+            android:textColor="@color/user_primary"
+            android:gravity="end"
+            android:layout_marginTop="4dp" />
+
+        <!-- Makan Siang -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Makan Siang"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/edDialogMakanSiang"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Pilih makanan siang"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvDialogKaloriMakanSiang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 kkal"
+            android:textSize="12sp"
+            android:textColor="@color/user_primary"
+            android:gravity="end"
+            android:layout_marginTop="4dp" />
+
+        <!-- Makan Malam -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Makan Malam"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/edDialogMakanMalam"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Pilih makanan malam"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvDialogKaloriMakanMalam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 kkal"
+            android:textSize="12sp"
+            android:textColor="@color/user_primary"
+            android:gravity="end"
+            android:layout_marginTop="4dp" />
+
+        <!-- Snack -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Snack / Cemilan"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/edDialogSnack"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Pilih snack / cemilan"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvDialogKaloriSnack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 kkal"
+            android:textSize="12sp"
+            android:textColor="@color/user_primary"
+            android:gravity="end"
+            android:layout_marginTop="4dp" />
+
+        <!-- Total -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="18dp"
+            android:padding="12dp"
+            android:background="@drawable/bg_card_white">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total Kalori"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/tvDialogTotalKalori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 kkal"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/user_primary" />
+        </LinearLayout>
+
+        <!-- Tombol -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="18dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBatalInputMakan"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="Batal"
+                android:textColor="@color/text_primary"
+                android:background="@drawable/bg_input"
+                android:layout_marginEnd="6dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSimpanInputMakan"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="Simpan"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@drawable/btn_biru"
+                android:layout_marginStart="6dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

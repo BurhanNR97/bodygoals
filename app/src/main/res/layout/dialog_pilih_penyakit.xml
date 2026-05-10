@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    android:padding="18dp"
+    android:background="@drawable/bg_card_white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Riwayat Penyakit"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:textColor="@color/text_primary"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/edCariPenyakit"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="14dp"
+        android:hint="Cari penyakit..."
+        android:singleLine="true"
+        android:inputType="text"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:textSize="13sp"
+        android:background="@drawable/bg_input" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:id="@+id/llListPenyakit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="14dp">
+
+        <TextView
+            android:id="@+id/btnBatalPenyakit"
+            android:layout_width="100dp"
+            android:layout_height="44dp"
+            android:gravity="center"
+            android:text="BATAL"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/btn_abu" />
+
+        <TextView
+            android:id="@+id/btnSimpanPenyakit"
+            android:layout_width="100dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="SIMPAN"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_biru" />
+
+    </LinearLayout>
+
+</LinearLayout>

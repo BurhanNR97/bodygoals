@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:id="@+id/layoutHomeDokter">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/bg_header_doctor"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BodyGoals"
+                        android:textColor="@color/white"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selamat datang kembali,"
+                        android:textColor="#BBDEFB"
+                        android:textSize="13sp"
+                        android:layout_marginTop="2dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dokter 👋"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivNotifDoctor"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_toStartOf="@id/ivAvatarDoctor"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:src="@android:drawable/ic_menu_agenda"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/ivAvatarDoctor"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    android:background="@drawable/bg_icon_blue"
+                    android:padding="6dp"
+                    android:scaleType="fitCenter"/>
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="-20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ringkasan Pasien"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@android:drawable/ic_menu_manage"
+                                android:background="@drawable/bg_icon_blue"
+                                android:padding="8dp"
+                                app:tint="@color/icon_blue" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="120"
+                                android:textColor="@color/text_primary"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="6dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pasien Aktif"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:background="@color/divider"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@android:drawable/ic_menu_info_details"
+                                android:background="@drawable/bg_icon_purple"
+                                android:padding="8dp"
+                                app:tint="@color/icon_purple" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="18"
+                                android:textColor="@color/text_primary"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="6dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Konsultasi"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:gravity="center"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hari Ini"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:background="@color/divider"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@android:drawable/ic_menu_agenda"
+                                android:background="@drawable/bg_icon_green"
+                                android:padding="8dp"
+                                app:tint="@color/icon_green" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8"
+                                android:textColor="@color/text_primary"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="6dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Program"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Berjalan"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kondisi Rata-rata Pasien"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:weightSum="3">
+
+                        <!-- Berat Badan -->
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="72.5" android:textColor="@color/text_primary" android:textSize="28sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Berat Badan" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="kg" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                        </LinearLayout>
+
+                        <!-- Tinggi Badan -->
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="165" android:textColor="@color/text_primary" android:textSize="28sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tinggi Badan" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="cm" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                        </LinearLayout>
+
+                        <!-- BMI Gauge -->
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/bmiGaugeDoctor"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="24.5" android:textColor="@color/admin_primary" android:textSize="18sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BMI" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Menu Utama"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp"/>
+
+                    <!-- Row 1: Pasien & Konsultasi -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="2" android:layout_marginBottom="8dp">
+
+                        <LinearLayout android:id="@+id/menuPasienSaya" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_manage" android:background="@drawable/bg_icon_blue" android:padding="8dp" android:tint="@color/icon_blue"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pasien Saya" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kelola data pasien" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuKonsultasi" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginStart="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_info_details" android:background="@drawable/bg_icon_purple" android:padding="8dp" android:tint="@color/icon_purple"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Konsultasi" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Riwayat konsultasi" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 2: Program Diet & Menu Makanan -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="2" android:layout_marginBottom="8dp">
+
+                        <LinearLayout android:id="@+id/menuProgramDiet" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_agenda" android:background="@drawable/bg_icon_green" android:padding="8dp" android:tint="@color/icon_green"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Program Diet" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Buat program diet" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuMakananDokter" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginStart="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_today" android:background="@drawable/bg_icon_orange" android:padding="8dp" android:tint="@color/icon_orange"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menu Makanan" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rekomendasi menu" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 3: Artikel & Catatan -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="2" android:layout_marginBottom="8dp">
+
+                        <LinearLayout android:id="@+id/menuArtikelDokter" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_info_details" android:background="@drawable/bg_icon_blue" android:padding="8dp" android:tint="@color/icon_blue"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Artikel &amp; Edukasi" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Artikel kesehatan" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuCatatan" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginStart="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_edit" android:background="@drawable/bg_icon_purple" android:padding="8dp" android:tint="@color/icon_purple"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Catatan" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Catatan dokter" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 4: Pengingat & Profil -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="2">
+
+                        <LinearLayout android:id="@+id/menuPengingat" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginEnd="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_agenda" android:background="@drawable/bg_icon_orange" android:padding="8dp" android:tint="@color/icon_orange"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pengingat" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pengingat pasien" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:id="@+id/menuProfilDokter" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_card_white" android:padding="14dp" android:layout_marginStart="4dp">
+                            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_myplaces" android:background="@drawable/bg_icon_blue" android:padding="8dp" android:tint="@color/icon_blue"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Profil Dokter" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kelola profil" android:textColor="@color/text_secondary" android:textSize="10sp" android:gravity="center"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ===== JADWAL HARI INI ===== -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Title Row -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="12dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Jadwal Hari Ini" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lihat Semua" android:textColor="@color/doctor_primary" android:textSize="12sp"/>
+                    </LinearLayout>
+
+                    <!-- Schedule Item 1 - Selesai -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="10dp">
+                        <TextView android:layout_width="50dp" android:layout_height="wrap_content" android:text="09:00" android:textColor="@color/text_hint" android:textSize="12sp" android:textStyle="bold"/>
+                        <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_myplaces" android:background="@drawable/bg_icon_blue" android:padding="6dp" android:tint="@color/icon_blue"/>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="10dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Andi Saputra" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Konsultasi" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                        </LinearLayout>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Selesai" android:textColor="@color/status_done" android:textSize="11sp" android:textStyle="bold" android:background="@drawable/bg_status_done" android:paddingStart="8dp" android:paddingEnd="8dp" android:paddingTop="4dp" android:paddingBottom="4dp"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginBottom="10dp"/>
+
+                    <!-- Schedule Item 2 - Berjalan -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="10dp">
+                        <TextView android:layout_width="50dp" android:layout_height="wrap_content" android:text="10:30" android:textColor="@color/text_hint" android:textSize="12sp" android:textStyle="bold"/>
+                        <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_myplaces" android:background="@drawable/bg_icon_orange" android:padding="6dp" android:tint="@color/icon_orange"/>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="10dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Siti Aisyah" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Follow Up" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                        </LinearLayout>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Berjalan" android:textColor="@color/status_running" android:textSize="11sp" android:textStyle="bold" android:background="@drawable/bg_status_running" android:paddingStart="8dp" android:paddingEnd="8dp" android:paddingTop="4dp" android:paddingBottom="4dp"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginBottom="10dp"/>
+
+                    <!-- Schedule Item 3 - Menunggu -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                        <TextView android:layout_width="50dp" android:layout_height="wrap_content" android:text="13:00" android:textColor="@color/text_hint" android:textSize="12sp" android:textStyle="bold"/>
+                        <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@android:drawable/ic_menu_myplaces" android:background="@drawable/bg_icon_green" android:padding="6dp" android:tint="@color/icon_green"/>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="10dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Budi Santoso" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Konsultasi" android:textColor="@color/text_secondary" android:textSize="11sp"/>
+                        </LinearLayout>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menunggu" android:textColor="@color/status_waiting" android:textSize="11sp" android:textStyle="bold" android:background="@drawable/bg_status_waiting" android:paddingStart="8dp" android:paddingEnd="8dp" android:paddingTop="4dp" android:paddingBottom="4dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Bottom padding -->
+            <View android:layout_width="match_parent" android:layout_height="70dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== BOTTOM NAVIGATION DOKTER ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_bottom_nav"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@android:drawable/ic_menu_compass" android:tint="@color/doctor_primary"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dashboard" android:textColor="@color/doctor_primary" android:textSize="9sp" android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@android:drawable/ic_menu_manage" android:tint="@color/text_hint"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pasien" android:textColor="@color/text_hint" android:textSize="9sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@android:drawable/ic_menu_info_details" android:tint="@color/text_hint"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Konsultasi" android:textColor="@color/text_hint" android:textSize="9sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@android:drawable/ic_menu_today" android:tint="@color/text_hint"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menu" android:textColor="@color/text_hint" android:textSize="9sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@android:drawable/ic_menu_myplaces" android:tint="@color/text_hint"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Profil" android:textColor="@color/text_hint" android:textSize="9sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

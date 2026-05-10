@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Admin Theme - Orange -->
+    <color name="admin_primary">#FF6B00</color>
+    <color name="admin_primary_dark">#E55A00</color>
+    <color name="admin_primary_light">#FF8C33</color>
+    <color name="admin_gradient_start">#FF6B00</color>
+    <color name="admin_gradient_end">#FF9A3C</color>
+
+    <!-- Doctor Theme - Blue -->
+    <color name="doctor_primary">#1565C0</color>
+    <color name="doctor_primary_dark">#0D47A1</color>
+    <color name="doctor_primary_light">#42A5F5</color>
+    <color name="doctor_gradient_start">#1565C0</color>
+    <color name="doctor_gradient_end">#42A5F5</color>
+
+    <!-- User Theme - Green -->
+    <color name="user_primary">#2E7D32</color>
+    <color name="user_primary_dark">#1B5E20</color>
+    <color name="user_primary_light">#66BB6A</color>
+    <color name="user_gradient_start">#2E7D32</color>
+    <color name="user_gradient_end">#66BB6A</color>
+
+    <!-- Common Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="background">#F5F5F5</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="divider">#E0E0E0</color>
+
+    <!-- Status Colors -->
+    <color name="status_done">#4CAF50</color>
+    <color name="status_running">#FF9800</color>
+    <color name="status_waiting">#F44336</color>
+
+    <!-- Icon Colors -->
+    <color name="icon_orange">#FF6B00</color>
+    <color name="icon_blue">#1565C0</color>
+    <color name="icon_green">#2E7D32</color>
+    <color name="icon_purple">#7B1FA2</color>
+    <color name="icon_red">#D32F2F</color>
+
+    <!-- Chart Colors -->
+    <color name="chart_line">#FF6B00</color>
+    <color name="chart_fill">#FFCC99</color>
+
+    <!-- Progress Colors -->
+    <color name="progress_background">#E0E0E0</color>
+    <color name="progress_green">#4CAF50</color>
+
+    <!-- BMI Gauge -->
+    <color name="bmi_low">#FF5722</color>
+    <color name="bmi_normal">#4CAF50</color>
+    <color name="bmi_high">#FF9800</color>
+</resources>

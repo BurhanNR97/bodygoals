@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margin & Padding -->
+    <dimen name="margin_xxs">2dp</dimen>
+    <dimen name="margin_xs">4dp</dimen>
+    <dimen name="margin_sm">8dp</dimen>
+    <dimen name="margin_md">12dp</dimen>
+    <dimen name="margin_base">16dp</dimen>
+    <dimen name="margin_lg">20dp</dimen>
+    <dimen name="margin_xl">24dp</dimen>
+    <dimen name="margin_xxl">32dp</dimen>
+
+    <!-- Card Corner Radius -->
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">12dp</dimen>
+    <dimen name="radius_lg">16dp</dimen>
+    <dimen name="radius_xl">20dp</dimen>
+    <dimen name="radius_pill">50dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_xs">10sp</dimen>
+    <dimen name="text_sm">12sp</dimen>
+    <dimen name="text_base">14sp</dimen>
+    <dimen name="text_md">16sp</dimen>
+    <dimen name="text_lg">18sp</dimen>
+    <dimen name="text_xl">20sp</dimen>
+    <dimen name="text_xxl">24sp</dimen>
+    <dimen name="text_3xl">28sp</dimen>
+
+    <!-- Component Sizes -->
+    <dimen name="header_height">160dp</dimen>
+    <dimen name="icon_sm">24dp</dimen>
+    <dimen name="icon_md">32dp</dimen>
+    <dimen name="icon_lg">40dp</dimen>
+    <dimen name="icon_xl">48dp</dimen>
+    <dimen name="avatar_size">60dp</dimen>
+    <dimen name="avatar_small">40dp</dimen>
+    <dimen name="bottom_nav_height">60dp</dimen>
+    <dimen name="stat_card_min_height">80dp</dimen>
+    <dimen name="menu_item_height">72dp</dimen>
+    <dimen name="progress_height">8dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="fab_size">56dp</dimen>
+</resources>
