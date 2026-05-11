@@ -1,7 +1,7 @@
 package com.spk.bodygoals.service;
 
 public class ApiConfig {
-    public static final String BASE_URL = "http://124.156.201.86/api/";
+    public static final String BASE_URL = "https://bodygoals.web.id/api/";
     public static final String ADMIN_DASHBOARD = BASE_URL + "admin/dashboard";
     public static final String USER_DASHBOARD = BASE_URL + "user/dashboard";
     public static final String USER_PROFIL = BASE_URL + "user/profil";
@@ -12,7 +12,8 @@ public class ApiConfig {
     public static final String RESET_REKOMENDASI = BASE_URL + "user/rekomendasi/reset";
     public static final String PENYAKIT = BASE_URL + "penyakit";
     public static final String UPDATE_PENYAKIT_USER = BASE_URL + "user/penyakit/update";
-
+    public static final String ADMIN_PETUGAS_FETCH = BASE_URL + "admin/petugas";
+    public static final String ADMIN_PETUGAS_HAPUS = BASE_URL + "admin/petugas/hapus";
     public static String getUrl(String endpoint) {
         return BASE_URL + endpoint;
     }
