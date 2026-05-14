@@ -57,25 +57,44 @@ public class adpPetugas extends RecyclerView.Adapter<adpPetugas.ViewHolder> {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String[] menu = {"Lihat Data", "Hapus"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogTheme);
+                builder.setCancelable(false);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle(model.getNama());
-                builder.setItems(menu, (dialog, which) -> {
-                    if (which == 0) {
-                        Intent intent = new Intent(context, DetailDataPetugas.class);
-                        intent.putExtra("id", model.getId());
-                        intent.putExtra("nama", model.getNama());
-                        intent.putExtra("role", model.getRole());
-                        context.startActivity(intent);
-                        if (context instanceof Activity) {
-                            ((Activity) context).finish();
-                        }
-                    } else if (which == 1) {
-                        konfirmasiHapus(model.getId(), model.getNama(), position);
+                View popup = LayoutInflater.from(context).inflate(R.layout.dialog_konfirmasi, null);
+                builder.setView(popup);
+
+                final AlertDialog alertDialog = builder.create();
+
+                if (alertDialog.getWindow() != null) {
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+                }
+
+                TextView info = popup.findViewById(R.id.txtTanyaKonfirmasi);
+                info.setText(model.getNama() +"\n"+ model.getRole());
+
+                popup.findViewById(R.id.btnLihatKonfirmasi).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
                     }
                 });
-                builder.show();
+
+                popup.findViewById(R.id.btnHapusKonfirmasi).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        konfirmasiHapus(model.getId(), model.getNama(), position);
+                        alertDialog.cancel();
+                    }
+                });
+
+                popup.findViewById(R.id.btnBatalKonfirmasi).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.cancel();
+                    }
+                });
+
+                alertDialog.show();
             }
         });
     }
@@ -100,36 +119,33 @@ public class adpPetugas extends RecyclerView.Adapter<adpPetugas.ViewHolder> {
     }
 
     private void konfirmasiHapus(String id, String nama, int position) {
-        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context, R.style.AlertDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogTheme);
         builder.setCancelable(false);
+
         View popup = LayoutInflater.from(context).inflate(R.layout.dialog_info, null);
         builder.setView(popup);
+
         final AlertDialog alertDialog = builder.create();
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
-        alertDialog.show();
 
         TextView info = popup.findViewById(R.id.txtTanyaInfo);
         info.setText("Anda yakin ingin menghapus data ini ?\n" + nama);
 
-        popup.findViewById(R.id.btnYaInfo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (position >= 0 && position < list.size()) {
-                    hapusPetugasDariDatabase(id, position, alertDialog);
-                }
-                alertDialog.cancel();
+        popup.findViewById(R.id.btnYaInfo).setOnClickListener(v -> {
+            if (id == null || id.trim().isEmpty()) {
+                Toast.makeText(context, "ID/NIK petugas kosong", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (position >= 0 && position < list.size()) {
+                hapusPetugasDariDatabase(id, position, alertDialog);
             }
         });
 
-        popup.findViewById(R.id.btnTidakInfo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.cancel();
-            }
-        });
+        popup.findViewById(R.id.btnTidakInfo).setOnClickListener(v -> alertDialog.dismiss());
 
         alertDialog.show();
     }
@@ -164,14 +180,48 @@ public class adpPetugas extends RecyclerView.Adapter<adpPetugas.ViewHolder> {
                     }
                 },
                 error -> {
-                    Toast.makeText(context, "Gagal menghapus data dari database", Toast.LENGTH_SHORT).show();
+                    String pesan = "Gagal menghapus data dari database";
+
+                    if (error.networkResponse != null) {
+                        int code = error.networkResponse.statusCode;
+
+                        if (error.networkResponse.data != null) {
+                            try {
+                                String body = new String(error.networkResponse.data, "UTF-8");
+                                android.util.Log.e("HAPUS_PETUGAS", "HTTP " + code + " BODY: " + body);
+
+                                JSONObject obj = new JSONObject(body);
+                                pesan = obj.optString("message", pesan);
+                            } catch (Exception e) {
+                                pesan = "Gagal menghapus data. HTTP " + code;
+                            }
+                        } else {
+                            pesan = "Gagal menghapus data. HTTP " + code;
+                        }
+                    } else {
+                        android.util.Log.e("HAPUS_PETUGAS", String.valueOf(error));
+                        pesan = "Tidak dapat terhubung ke server";
+                    }
+
+                    Toast.makeText(context, pesan, Toast.LENGTH_LONG).show();
                 }
         ) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("id", id);
+
+                android.util.Log.d("HAPUS_PETUGAS_ID", id);
+                android.util.Log.d("HAPUS_PETUGAS_URL", ApiConfig.ADMIN_PETUGAS_HAPUS);
+
                 return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/json");
+                return headers;
             }
         };
 

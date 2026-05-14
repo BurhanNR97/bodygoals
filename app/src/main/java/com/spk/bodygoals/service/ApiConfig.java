@@ -14,6 +14,11 @@ public class ApiConfig {
     public static final String UPDATE_PENYAKIT_USER = BASE_URL + "user/penyakit/update";
     public static final String ADMIN_PETUGAS_FETCH = BASE_URL + "admin/petugas";
     public static final String ADMIN_PETUGAS_HAPUS = BASE_URL + "admin/petugas/hapus";
+    public static final String ADMIN_PETUGAS_STORE = BASE_URL + "admin/petugas/store";
+    public static final String ADMIN_CEK_NIK = BASE_URL + "admin/petugas/cek-nik";
+    public static final String ADMIN_CEK_EMAIL = BASE_URL + "admin/petugas/cek-email";
+    public static final String ADMIN_PASIEN_FETCH = BASE_URL + "admin/pasien";
+    public static final String ADMIN_PASIEN_HAPUS = BASE_URL + "admin/pasien/hapus";
     public static String getUrl(String endpoint) {
         return BASE_URL + endpoint;
     }

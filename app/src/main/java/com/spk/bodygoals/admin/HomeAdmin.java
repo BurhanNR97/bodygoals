@@ -47,7 +47,7 @@ public class HomeAdmin extends AppCompatActivity {
     ImageView profil;
     SessionManager session;
     TextView tvTotalUser, tvTotalPasien, tvTotalDokter;
-    LinearLayout menuPetugas;
+    LinearLayout menuPetugas, menuPasien;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -81,6 +81,7 @@ public class HomeAdmin extends AppCompatActivity {
         tvTotalPasien = findViewById(R.id.qty_pasien);
 
         menuPetugas = findViewById(R.id.menuPetugas);
+        menuPasien = findViewById(R.id.menuPasien);
 
         profil = findViewById(R.id.ivAvatar);
         profil.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +97,14 @@ public class HomeAdmin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeAdmin.this, DataPetugas.class));
+                finish();
+            }
+        });
+
+        menuPasien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeAdmin.this, DataPasien.class));
                 finish();
             }
         });
