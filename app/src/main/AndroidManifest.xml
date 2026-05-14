@@ -16,6 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BodyGoals">
         <activity
+            android:name=".admin.DetailMakanan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.DataMakanan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.DetailRulePenyakit"
+            android:exported="false" />
+        <activity
+            android:name=".admin.RulesPenyakit"
+            android:exported="false" />
+        <activity
+            android:name=".admin.DataBMI"
+            android:exported="false" />
+        <activity
             android:name=".admin.DataPasien"
             android:exported="false" />
         <activity

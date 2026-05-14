@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp"
+        android:background="@drawable/bg_card_white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubah Data Makanan"
+            android:textColor="#222222"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="14dp" />
+
+        <Spinner
+            android:id="@+id/spKategoriMakanan"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="12dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtNamaMakanan"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Nama makanan"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtPorsiGram"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Porsi gram"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtKkal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Kkal"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtProtein"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Protein"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtKarbohidrat"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Karbohidrat"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtEnergi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Energi"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtAir"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Air"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtLemak"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Lemak"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtSerat"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Serat"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtGula"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Gula"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtNatrium"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Natrium"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="14dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/edtKeterangan"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:hint="Keterangan"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:background="@drawable/bg_edittext"
+            android:padding="14dp"
+            android:layout_marginBottom="18dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnBatalUbahMakanan"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Batal"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:background="@drawable/btn_abu"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/btnSimpanUbahMakanan"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Simpan"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:background="@drawable/btn_biru"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

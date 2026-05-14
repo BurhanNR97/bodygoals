@@ -47,7 +47,7 @@ public class HomeAdmin extends AppCompatActivity {
     ImageView profil;
     SessionManager session;
     TextView tvTotalUser, tvTotalPasien, tvTotalDokter;
-    LinearLayout menuPetugas, menuPasien;
+    LinearLayout menuPetugas, menuPasien, menuBMI, menuRulesPenyakit, menuMakanan, menuAkun;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -82,6 +82,12 @@ public class HomeAdmin extends AppCompatActivity {
 
         menuPetugas = findViewById(R.id.menuPetugas);
         menuPasien = findViewById(R.id.menuPasien);
+        menuBMI = findViewById(R.id.menuRefBMI);
+        menuRulesPenyakit = findViewById(R.id.menuPenyakit);
+        menuMakanan = findViewById(R.id.menuMakanan);
+        menuAkun = findViewById(R.id.menuAkun);
+
+        getDashboardAdmin();
 
         profil = findViewById(R.id.ivAvatar);
         profil.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +115,37 @@ public class HomeAdmin extends AppCompatActivity {
             }
         });
 
-        getDashboardAdmin();
+        menuBMI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeAdmin.this, DataBMI.class));
+                finish();
+            }
+        });
+
+        menuRulesPenyakit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeAdmin.this, RulesPenyakit.class));
+                finish();
+            }
+        });
+
+        menuMakanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeAdmin.this, DataMakanan.class));
+                finish();
+            }
+        });
+
+        menuAkun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
 
     private void setupUserChart(JSONArray array) throws JSONException {

@@ -491,6 +491,7 @@
 
                         <!-- Laporan -->
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/menuAkun"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -536,6 +537,7 @@
 
                         <!-- Pengaturan -->
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/menuLaporan"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
