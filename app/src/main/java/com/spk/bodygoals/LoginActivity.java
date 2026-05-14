@@ -148,6 +148,11 @@ public class LoginActivity extends AppCompatActivity {
                                 msg += " | " + error.getMessage();
                             }
 
+                            if (error.networkResponse.statusCode == 401) {
+                                Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
                             Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG).show();
                         }
                 ) {

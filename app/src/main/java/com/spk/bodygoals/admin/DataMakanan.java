@@ -27,8 +27,10 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.spk.bodygoals.R;
 import com.spk.bodygoals.adapter.adpMakanan;
+import com.spk.bodygoals.dokter.HomeDokter;
 import com.spk.bodygoals.model.mMakanan;
 import com.spk.bodygoals.service.ApiConfig;
+import com.spk.bodygoals.service.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,7 +48,7 @@ public class DataMakanan extends AppCompatActivity {
     private ArrayList<mMakanan> listFull;
     private ArrayList<mMakanan> listFilter;
     private AlertDialog loadingDialog;
-
+    SessionManager session;
     private String filterKategori = "Semua";
     private HashMap<String, String> mapKategori = new HashMap<>();
     private ArrayList<String> listKategoriNama = new ArrayList<>();
@@ -83,12 +85,21 @@ public class DataMakanan extends AppCompatActivity {
         kembali = findViewById(R.id.btnBackDataMakanan);
         rvMakanan = findViewById(R.id.rvDataMakanan);
 
+        session = new SessionManager(DataMakanan.this);
+
         adapter = new adpMakanan(this, listFilter);
         rvMakanan.setLayoutManager(new LinearLayoutManager(this));
         rvMakanan.setAdapter(adapter);
 
         kembali.setOnClickListener(view -> {
-            startActivity(new Intent(DataMakanan.this, HomeAdmin.class));
+            String role = session.getRole().toLowerCase();
+
+            if (role.equals("admin")) {
+                startActivity(new Intent(DataMakanan.this, HomeAdmin.class));
+            } else
+            if (role.equals("dokter")) {
+                startActivity(new Intent(DataMakanan.this, HomeDokter.class));
+            }
             finish();
         });
 

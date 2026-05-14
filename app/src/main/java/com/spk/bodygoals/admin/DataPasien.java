@@ -25,8 +25,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.spk.bodygoals.R;
 import com.spk.bodygoals.adapter.adpPasien;
+import com.spk.bodygoals.dokter.HomeDokter;
 import com.spk.bodygoals.model.mPasien;
 import com.spk.bodygoals.service.ApiConfig;
+import com.spk.bodygoals.service.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,6 +40,7 @@ public class DataPasien extends AppCompatActivity {
     private EditText edtCari;
     private TextView tvJumlahData, tvKosong;
     private ImageView kembali;
+    SessionManager session;
 
     private adpPasien adapter;
     private ArrayList<mPasien> listPasienFull;
@@ -60,6 +63,8 @@ public class DataPasien extends AppCompatActivity {
         listPasienFull = new ArrayList<>();
         listPasienFilter = new ArrayList<>();
 
+        session = new SessionManager(this);
+
         edtCari = findViewById(R.id.edtCariPasien);
         tvJumlahData = findViewById(R.id.tvJumlahDataPasien);
         tvKosong = findViewById(R.id.tvKosongPasien);
@@ -73,7 +78,14 @@ public class DataPasien extends AppCompatActivity {
         rvPasien.setAdapter(adapter);
 
         kembali.setOnClickListener(v -> {
-            startActivity(new Intent(DataPasien.this, HomeAdmin.class));
+            String role = session.getRole().toLowerCase();
+
+            if (role.equals("admin")) {
+                startActivity(new Intent(DataPasien.this, HomeAdmin.class));
+            } else
+            if (role.equals("dokter")) {
+                startActivity(new Intent(DataPasien.this, HomeDokter.class));
+            }
             finish();
         });
 

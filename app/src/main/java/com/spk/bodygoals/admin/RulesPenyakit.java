@@ -23,8 +23,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.spk.bodygoals.R;
 import com.spk.bodygoals.adapter.adpRulePenyakit;
+import com.spk.bodygoals.dokter.HomeDokter;
 import com.spk.bodygoals.model.mRulePenyakit;
 import com.spk.bodygoals.service.ApiConfig;
+import com.spk.bodygoals.service.SessionManager;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class RulesPenyakit extends AppCompatActivity {
     private ArrayList<mRulePenyakit> listFull;
     private ArrayList<mRulePenyakit> listFilter;
     private AlertDialog loadingDialog;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +75,21 @@ public class RulesPenyakit extends AppCompatActivity {
         tvKosong = findViewById(R.id.tvKosongRulesPenyakit);
         kembali = findViewById(R.id.btnBackRulesPenyakit);
 
+        session = new SessionManager(this);
+
         adapter = new adpRulePenyakit(this, listFilter);
         rvRulesPenyakit.setLayoutManager(new LinearLayoutManager(this));
         rvRulesPenyakit.setAdapter(adapter);
 
         kembali.setOnClickListener(view -> {
-            startActivity(new Intent(RulesPenyakit.this, HomeAdmin.class));
+            String role = session.getRole().toLowerCase();
+
+            if (role.equals("admin")) {
+                startActivity(new Intent(RulesPenyakit.this, HomeAdmin.class));
+            } else
+            if (role.equals("dokter")) {
+                startActivity(new Intent(RulesPenyakit.this, HomeDokter.class));
+            }
             finish();
         });
 

@@ -31,9 +31,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.spk.bodygoals.R;
 import com.spk.bodygoals.adapter.adpBMI;
+import com.spk.bodygoals.dokter.HomeDokter;
 import com.spk.bodygoals.model.mBMI;
 import com.spk.bodygoals.model.mPetugas;
 import com.spk.bodygoals.service.ApiConfig;
+import com.spk.bodygoals.service.SessionManager;
 import com.spk.bodygoals.user.HomeUser;
 
 import org.json.JSONArray;
@@ -51,6 +53,7 @@ public class DataBMI extends AppCompatActivity {
     adpBMI adapter;
     ArrayList<mBMI> list;
     private AlertDialog loadingDialog;
+    SessionManager session;
 
 
     @SuppressLint("MissingInflatedId")
@@ -71,6 +74,8 @@ public class DataBMI extends AppCompatActivity {
         tvKosong = findViewById(R.id.tvKosongBMI);
         rvData = findViewById(R.id.rvDataBMI);
 
+        session = new SessionManager(this);
+
         list = new ArrayList<>();
         adapter = new adpBMI(DataBMI.this, list);
 
@@ -80,7 +85,14 @@ public class DataBMI extends AppCompatActivity {
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DataBMI.this, HomeAdmin.class));
+                String role = session.getRole().toLowerCase();
+
+                if (role.equals("admin")) {
+                    startActivity(new Intent(DataBMI.this, HomeAdmin.class));
+                } else
+                if (role.equals("dokter")) {
+                    startActivity(new Intent(DataBMI.this, HomeDokter.class));
+                }
                 finish();
             }
         });

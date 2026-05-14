@@ -30,6 +30,7 @@ public class ApiConfig {
     public static final String ADMIN_MAKANAN_DETAIL = BASE_URL + "admin/makanan/";
     public static final String ADMIN_MAKANAN_HAPUS = BASE_URL + "admin/makanan/hapus";
     public static final String ADMIN_MAKANAN_UPDATE = BASE_URL + "admin/makanan/update";
+    public static final String DOKTER_DASHBOARD = BASE_URL + "dokter/dashboard";
     public static String getUrl(String endpoint) {
         return BASE_URL + endpoint;
     }
