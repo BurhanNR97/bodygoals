@@ -926,6 +926,13 @@ public class Rekomendasi extends AppCompatActivity {
             body.put("email", session.getEmail());
             body.put("tb", tbHariIni);
             body.put("bb", bbHariIni);
+
+            JSONArray penyakitIds = new JSONArray();
+            for (Integer id : selectedPenyakitIds) {
+                penyakitIds.put(id);
+            }
+            body.put("penyakit_ids", penyakitIds);
+
             body.put("sarapan", toJsonArray(sarapanList));
             body.put("makan_siang", toJsonArray(makanSiangList));
             body.put("makan_malam", toJsonArray(makanMalamList));
@@ -1158,9 +1165,11 @@ public class Rekomendasi extends AppCompatActivity {
                 continue;
             }
 
+            int hariKe = hariObj.optInt("hari_ke", i + 1);
+
             androidx.cardview.widget.CardView card = new androidx.cardview.widget.CardView(this);
-            card.setRadius(18);
-            card.setCardElevation(2);
+            card.setRadius(dpToPx(22));
+            card.setCardElevation(dpToPx(3));
             card.setUseCompatPadding(true);
             card.setCardBackgroundColor(Color.WHITE);
             card.setClickable(true);
@@ -1170,55 +1179,356 @@ public class Rekomendasi extends AppCompatActivity {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            cardParams.setMargins(0, 8, 0, 12);
+            cardParams.setMargins(0, dpToPx(6), 0, dpToPx(14));
             card.setLayoutParams(cardParams);
 
-            LinearLayout box = new LinearLayout(this);
-            box.setOrientation(LinearLayout.VERTICAL);
-            box.setPadding(18, 16, 18, 16);
+            LinearLayout root = new LinearLayout(this);
+            root.setOrientation(LinearLayout.VERTICAL);
+            root.setBackgroundColor(Color.WHITE);
+
+            // Header warna
+            LinearLayout header = new LinearLayout(this);
+            header.setOrientation(LinearLayout.VERTICAL);
+            header.setPadding(dpToPx(18), dpToPx(16), dpToPx(18), dpToPx(14));
+            header.setBackground(buatRoundDrawable(0xFFEFF6FF, dpToPx(22)));
+
+            LinearLayout rowHeader = new LinearLayout(this);
+            rowHeader.setOrientation(LinearLayout.HORIZONTAL);
+            rowHeader.setGravity(Gravity.CENTER_VERTICAL);
+
+            LinearLayout titleBox = new LinearLayout(this);
+            titleBox.setOrientation(LinearLayout.VERTICAL);
+
+            LinearLayout.LayoutParams titleBoxParams = new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1f
+            );
 
             TextView tvHari = new TextView(this);
-            tvHari.setText("Hari " + hariObj.optInt("hari_ke", i + 1));
-            tvHari.setTextSize(16);
-            tvHari.setTypeface(null, android.graphics.Typeface.BOLD);
+            tvHari.setText("Hari " + hariKe);
+            tvHari.setTextSize(18);
+            tvHari.setTypeface(null, Typeface.BOLD);
             tvHari.setTextColor(getResources().getColor(R.color.text_primary));
-            box.addView(tvHari);
 
             TextView tvTanggal = new TextView(this);
             tvTanggal.setText(hariObj.optString("tanggal", "-"));
-            tvTanggal.setTextSize(11);
+            tvTanggal.setTextSize(12);
             tvTanggal.setTextColor(getResources().getColor(R.color.text_secondary));
-            tvTanggal.setPadding(0, 2, 0, 8);
-            box.addView(tvTanggal);
+            tvTanggal.setPadding(0, dpToPx(3), 0, 0);
+
+            titleBox.addView(tvHari);
+            titleBox.addView(tvTanggal);
+            rowHeader.addView(titleBox, titleBoxParams);
+
+            TextView badge = new TextView(this);
+            badge.setText("Utama");
+            badge.setTextSize(11);
+            badge.setTypeface(null, Typeface.BOLD);
+            badge.setTextColor(getResources().getColor(R.color.user_primary));
+            badge.setGravity(Gravity.CENTER);
+            badge.setPadding(dpToPx(12), dpToPx(6), dpToPx(12), dpToPx(6));
+            badge.setBackground(buatRoundStrokeDrawable(0xFFFFFFFF, dpToPx(30), 0xFFBFDBFE, dpToPx(1)));
+            rowHeader.addView(badge);
+
+            header.addView(rowHeader);
 
             TextView tvInfo = new TextView(this);
-            tvInfo.setText("Rekomendasi utama • ketuk untuk lihat 5 pilihan");
-            tvInfo.setTextSize(11);
+            tvInfo.setText("Ketuk card untuk melihat 5 pilihan rekomendasi");
+            tvInfo.setTextSize(12);
             tvInfo.setTextColor(getResources().getColor(R.color.user_primary));
-            tvInfo.setPadding(0, 0, 0, 10);
-            box.addView(tvInfo);
+            tvInfo.setPadding(0, dpToPx(12), 0, 0);
+            header.addView(tvInfo);
 
-            tambahBarisMenu(box, "Sarapan", utama.optString("sarapan", "-"), utama.optDouble("sarapan_kkal", 0));
-            tambahBarisMenu(box, "Makan Siang", utama.optString("makan_siang", "-"), utama.optDouble("makan_siang_kkal", 0));
-            tambahBarisMenu(box, "Makan Malam", utama.optString("makan_malam", "-"), utama.optDouble("makan_malam_kkal", 0));
-            tambahBarisMenu(box, "Snack", utama.optString("snack", "-"), utama.optDouble("snack_kkal", 0));
+            root.addView(header);
 
-            TextView tvTotal = new TextView(this);
-            tvTotal.setText("Total: " + formatKkal(utama.optDouble("total_kkal", 0)) + " kkal");
-            tvTotal.setTextSize(13);
-            tvTotal.setTypeface(null, android.graphics.Typeface.BOLD);
-            tvTotal.setTextColor(getResources().getColor(R.color.user_primary));
-            tvTotal.setGravity(Gravity.END);
-            tvTotal.setPadding(0, 10, 0, 0);
-            box.addView(tvTotal);
+            // Body
+            LinearLayout body = new LinearLayout(this);
+            body.setOrientation(LinearLayout.VERTICAL);
+            body.setPadding(dpToPx(16), dpToPx(14), dpToPx(16), dpToPx(16));
 
-            card.addView(box);
+            tambahBarisMenuModern(body, "🍳", "Sarapan", utama, "sarapan");
+            tambahBarisMenuModern(body, "🍱", "Makan Siang", utama, "makan_siang");
+            tambahBarisMenuModern(body, "🍽️", "Makan Malam", utama, "makan_malam");
+            tambahBarisMenuModern(body, "🍎", "Cemilan", utama, "snack");
+
+            LinearLayout totalBox = new LinearLayout(this);
+            totalBox.setOrientation(LinearLayout.HORIZONTAL);
+            totalBox.setGravity(Gravity.CENTER_VERTICAL);
+            totalBox.setPadding(dpToPx(14), dpToPx(12), dpToPx(14), dpToPx(12));
+            totalBox.setBackground(buatRoundDrawable(0xFFF0FDF4, dpToPx(16)));
+
+            LinearLayout.LayoutParams totalParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            totalParams.setMargins(0, dpToPx(12), 0, 0);
+
+            TextView tvTotalLabel = new TextView(this);
+            tvTotalLabel.setText("Total energi");
+            tvTotalLabel.setTextSize(13);
+            tvTotalLabel.setTypeface(null, Typeface.BOLD);
+            tvTotalLabel.setTextColor(getResources().getColor(R.color.text_primary));
+
+            LinearLayout.LayoutParams labelTotalParams = new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1f
+            );
+
+            TextView tvTotalValue = new TextView(this);
+            tvTotalValue.setText(formatKkal(utama.optDouble("total_kkal", 0)) + " kkal");
+            tvTotalValue.setTextSize(15);
+            tvTotalValue.setTypeface(null, Typeface.BOLD);
+            tvTotalValue.setTextColor(getResources().getColor(R.color.user_primary));
+
+            totalBox.addView(tvTotalLabel, labelTotalParams);
+            totalBox.addView(tvTotalValue);
+            body.addView(totalBox, totalParams);
+
+            tambahRingkasanGizi(body, utama);
+
+            root.addView(body);
+            card.addView(root);
 
             final JSONObject finalHariObj = hariObj;
             card.setOnClickListener(v -> showDialogOpsiRekomendasiHari(finalHariObj));
 
             llRekomendasi7Hari.addView(card);
         }
+    }
+
+    private void tambahBarisMenuModern(LinearLayout parent, String icon, String label, JSONObject data, String prefix) {
+        String namaMenu = data.optString(prefix, "-");
+        double kkal = data.optDouble(prefix + "_kkal", 0);
+        double protein = data.optDouble(prefix + "_protein", 0);
+        double karbohidrat = data.optDouble(prefix + "_karbohidrat", 0);
+        double lemak = data.optDouble(prefix + "_lemak", 0);
+        double serat = data.optDouble(prefix + "_serat", 0);
+        double gula = data.optDouble(prefix + "_gula", 0);
+        double natrium = data.optDouble(prefix + "_natrium", 0);
+
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
+        box.setBackground(buatRoundDrawable(0xFFF9FAFB, dpToPx(18)));
+
+        LinearLayout.LayoutParams boxParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        boxParams.setMargins(0, 0, 0, dpToPx(10));
+
+        LinearLayout topRow = new LinearLayout(this);
+        topRow.setOrientation(LinearLayout.HORIZONTAL);
+        topRow.setGravity(Gravity.CENTER_VERTICAL);
+
+        TextView tvIcon = new TextView(this);
+        tvIcon.setText(icon);
+        tvIcon.setTextSize(22);
+        tvIcon.setGravity(Gravity.CENTER);
+
+        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(
+                dpToPx(40),
+                dpToPx(40)
+        );
+
+        LinearLayout titleBox = new LinearLayout(this);
+        titleBox.setOrientation(LinearLayout.VERTICAL);
+        titleBox.setPadding(dpToPx(10), 0, dpToPx(8), 0);
+
+        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+
+        TextView tvLabel = new TextView(this);
+        tvLabel.setText(label);
+        tvLabel.setTextSize(13);
+        tvLabel.setTypeface(null, Typeface.BOLD);
+        tvLabel.setTextColor(getResources().getColor(R.color.text_primary));
+
+        TextView tvMenu = new TextView(this);
+        tvMenu.setText(namaMenu == null || namaMenu.trim().isEmpty() ? "-" : namaMenu);
+        tvMenu.setTextSize(12);
+        tvMenu.setTextColor(getResources().getColor(R.color.text_secondary));
+        tvMenu.setPadding(0, dpToPx(3), 0, 0);
+        tvMenu.setMaxLines(2);
+
+        titleBox.addView(tvLabel);
+        titleBox.addView(tvMenu);
+
+        TextView tvKkal = new TextView(this);
+        tvKkal.setText(formatKkal(kkal) + "\nkkal");
+        tvKkal.setTextSize(11);
+        tvKkal.setTypeface(null, Typeface.BOLD);
+        tvKkal.setGravity(Gravity.CENTER);
+        tvKkal.setTextColor(getResources().getColor(R.color.user_primary));
+        tvKkal.setPadding(dpToPx(10), dpToPx(6), dpToPx(10), dpToPx(6));
+        tvKkal.setBackground(buatRoundDrawable(0xFFEFF6FF, dpToPx(14)));
+
+        topRow.addView(tvIcon, iconParams);
+        topRow.addView(titleBox, titleParams);
+        topRow.addView(tvKkal);
+
+        box.addView(topRow);
+
+        View divider = new View(this);
+        divider.setBackgroundColor(0xFFE5E7EB);
+
+        LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dpToPx(1)
+        );
+        dividerParams.setMargins(0, dpToPx(10), 0, dpToPx(10));
+        box.addView(divider, dividerParams);
+
+        TextView tvDetailTitle = new TextView(this);
+        tvDetailTitle.setText("Rincian gizi");
+        tvDetailTitle.setTextSize(11);
+        tvDetailTitle.setTypeface(null, Typeface.BOLD);
+        tvDetailTitle.setTextColor(getResources().getColor(R.color.text_primary));
+        tvDetailTitle.setPadding(0, 0, 0, dpToPx(8));
+        box.addView(tvDetailTitle);
+
+        LinearLayout row1 = new LinearLayout(this);
+        row1.setOrientation(LinearLayout.HORIZONTAL);
+        row1.setWeightSum(3);
+
+        LinearLayout row2 = new LinearLayout(this);
+        row2.setOrientation(LinearLayout.HORIZONTAL);
+        row2.setWeightSum(3);
+        row2.setPadding(0, dpToPx(8), 0, 0);
+
+        tambahChipGiziKecil(row1, "Protein", formatSatuAngka(protein) + " g");
+        tambahChipGiziKecil(row1, "Karbo", formatSatuAngka(karbohidrat) + " g");
+        tambahChipGiziKecil(row1, "Lemak", formatSatuAngka(lemak) + " g");
+
+        tambahChipGiziKecil(row2, "Serat", formatSatuAngka(serat) + " g");
+        tambahChipGiziKecil(row2, "Gula", formatSatuAngka(gula) + " g");
+        tambahChipGiziKecil(row2, "Natrium", formatSatuAngka(natrium) + " mg");
+
+        box.addView(row1);
+        box.addView(row2);
+
+        parent.addView(box, boxParams);
+    }
+
+    private void tambahChipGiziKecil(LinearLayout parent, String label, String value) {
+        LinearLayout chip = new LinearLayout(this);
+        chip.setOrientation(LinearLayout.VERTICAL);
+        chip.setGravity(Gravity.CENTER);
+        chip.setPadding(dpToPx(6), dpToPx(7), dpToPx(6), dpToPx(7));
+        chip.setBackground(buatRoundDrawable(0xFFFFFFFF, dpToPx(12)));
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+        params.setMargins(dpToPx(3), 0, dpToPx(3), 0);
+
+        TextView tvLabel = new TextView(this);
+        tvLabel.setText(label);
+        tvLabel.setTextSize(9);
+        tvLabel.setGravity(Gravity.CENTER);
+        tvLabel.setTextColor(getResources().getColor(R.color.text_secondary));
+
+        TextView tvValue = new TextView(this);
+        tvValue.setText(value);
+        tvValue.setTextSize(11);
+        tvValue.setTypeface(null, Typeface.BOLD);
+        tvValue.setGravity(Gravity.CENTER);
+        tvValue.setTextColor(getResources().getColor(R.color.text_primary));
+        tvValue.setPadding(0, dpToPx(2), 0, 0);
+
+        chip.addView(tvLabel);
+        chip.addView(tvValue);
+
+        parent.addView(chip, params);
+    }
+
+    private void tambahRingkasanGizi(LinearLayout parent, JSONObject data) {
+        double protein = data.optDouble("total_protein", 0);
+        double karbohidrat = data.optDouble("total_karbohidrat", 0);
+        double lemak = data.optDouble("total_lemak", 0);
+        double serat = data.optDouble("total_serat", 0);
+
+        if (protein <= 0 && karbohidrat <= 0 && lemak <= 0 && serat <= 0) {
+            return;
+        }
+
+        TextView title = new TextView(this);
+        title.setText("Ringkasan gizi");
+        title.setTextSize(12);
+        title.setTypeface(null, Typeface.BOLD);
+        title.setTextColor(getResources().getColor(R.color.text_primary));
+        title.setPadding(0, dpToPx(12), 0, dpToPx(8));
+        parent.addView(title);
+
+        LinearLayout row1 = new LinearLayout(this);
+        row1.setOrientation(LinearLayout.HORIZONTAL);
+        row1.setWeightSum(2);
+
+        LinearLayout row2 = new LinearLayout(this);
+        row2.setOrientation(LinearLayout.HORIZONTAL);
+        row2.setWeightSum(2);
+        row2.setPadding(0, dpToPx(8), 0, 0);
+
+        tambahChipGizi(row1, "Protein", formatSatuAngka(protein) + " g");
+        tambahChipGizi(row1, "Karbo", formatSatuAngka(karbohidrat) + " g");
+        tambahChipGizi(row2, "Lemak", formatSatuAngka(lemak) + " g");
+        tambahChipGizi(row2, "Serat", formatSatuAngka(serat) + " g");
+
+        parent.addView(row1);
+        parent.addView(row2);
+    }
+
+    private void tambahChipGizi(LinearLayout parent, String label, String value) {
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(dpToPx(12), dpToPx(8), dpToPx(12), dpToPx(8));
+        box.setBackground(buatRoundDrawable(0xFFF8FAFC, dpToPx(14)));
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+        params.setMargins(dpToPx(4), 0, dpToPx(4), 0);
+
+        TextView tvLabel = new TextView(this);
+        tvLabel.setText(label);
+        tvLabel.setTextSize(10);
+        tvLabel.setTextColor(getResources().getColor(R.color.text_secondary));
+
+        TextView tvValue = new TextView(this);
+        tvValue.setText(value);
+        tvValue.setTextSize(13);
+        tvValue.setTypeface(null, Typeface.BOLD);
+        tvValue.setTextColor(getResources().getColor(R.color.text_primary));
+        tvValue.setPadding(0, dpToPx(2), 0, 0);
+
+        box.addView(tvLabel);
+        box.addView(tvValue);
+
+        parent.addView(box, params);
+    }
+
+    private android.graphics.drawable.GradientDrawable buatRoundDrawable(int color, int radius) {
+        android.graphics.drawable.GradientDrawable drawable = new android.graphics.drawable.GradientDrawable();
+        drawable.setColor(color);
+        drawable.setCornerRadius(radius);
+        return drawable;
+    }
+
+    private android.graphics.drawable.GradientDrawable buatRoundStrokeDrawable(int color, int radius, int strokeColor, int strokeWidth) {
+        android.graphics.drawable.GradientDrawable drawable = new android.graphics.drawable.GradientDrawable();
+        drawable.setColor(color);
+        drawable.setCornerRadius(radius);
+        drawable.setStroke(strokeWidth, strokeColor);
+        return drawable;
     }
 
     private void tambahBarisMenu(LinearLayout parent, String label, String namaMenu, double kkal) {
@@ -2121,27 +2431,54 @@ public class Rekomendasi extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
 
-        LinearLayout root = new LinearLayout(this);
-        root.setOrientation(LinearLayout.VERTICAL);
-        root.setPadding(24, 22, 24, 22);
-        root.setBackgroundColor(Color.WHITE);
+        LinearLayout outer = new LinearLayout(this);
+        outer.setOrientation(LinearLayout.VERTICAL);
+        outer.setPadding(dpToPx(20), dpToPx(18), dpToPx(20), dpToPx(18));
+        outer.setBackgroundColor(Color.WHITE);
+
+        LinearLayout header = new LinearLayout(this);
+        header.setOrientation(LinearLayout.HORIZONTAL);
+        header.setGravity(Gravity.CENTER_VERTICAL);
+        header.setPadding(0, 0, 0, dpToPx(12));
+
+        LinearLayout titleBox = new LinearLayout(this);
+        titleBox.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams titleBoxParams = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
+        );
 
         TextView title = new TextView(this);
         title.setText("Rekomendasi Hari " + hariObj.optInt("hari_ke", 0));
         title.setTextSize(18);
-        title.setTypeface(null, android.graphics.Typeface.BOLD);
+        title.setTypeface(null, Typeface.BOLD);
         title.setTextColor(getResources().getColor(R.color.text_primary));
-        root.addView(title);
 
-        TextView subTitle = new TextView(this);
-        subTitle.setText(hariObj.optString("tanggal", "-") + " • 5 pilihan menu");
-        subTitle.setTextSize(12);
-        subTitle.setTextColor(getResources().getColor(R.color.text_secondary));
-        subTitle.setPadding(0, 4, 0, 14);
-        root.addView(subTitle);
+        TextView subtitle = new TextView(this);
+        subtitle.setText(hariObj.optString("tanggal", "-") + " • 5 pilihan menu");
+        subtitle.setTextSize(12);
+        subtitle.setTextColor(getResources().getColor(R.color.text_secondary));
+        subtitle.setPadding(0, dpToPx(3), 0, 0);
+
+        titleBox.addView(title);
+        titleBox.addView(subtitle);
+
+        TextView close = new TextView(this);
+        close.setText("✕");
+        close.setTextSize(18);
+        close.setGravity(Gravity.CENTER);
+        close.setTextColor(getResources().getColor(R.color.text_secondary));
+        close.setPadding(dpToPx(10), dpToPx(6), dpToPx(10), dpToPx(6));
+        close.setOnClickListener(v -> dialog.dismiss());
+
+        header.addView(titleBox, titleBoxParams);
+        header.addView(close);
+
+        outer.addView(header);
 
         ScrollView scrollView = new ScrollView(this);
-
         LinearLayout content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
 
@@ -2155,73 +2492,21 @@ public class Rekomendasi extends AppCompatActivity {
                     continue;
                 }
 
-                LinearLayout opsiBox = new LinearLayout(this);
-                opsiBox.setOrientation(LinearLayout.VERTICAL);
-                opsiBox.setPadding(18, 16, 18, 16);
-                opsiBox.setBackgroundResource(R.drawable.bg_card_white);
-
-                LinearLayout.LayoutParams opsiParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                opsiParams.setMargins(0, 0, 0, 14);
-                opsiBox.setLayoutParams(opsiParams);
-
-                TextView tvOpsi = new TextView(this);
-                tvOpsi.setText("Rekomendasi " + opsi.optInt("rekomendasi_ke", i + 1));
-                tvOpsi.setTextSize(15);
-                tvOpsi.setTypeface(null, android.graphics.Typeface.BOLD);
-                tvOpsi.setTextColor(getResources().getColor(R.color.text_primary));
-                opsiBox.addView(tvOpsi);
-
-                TextView tvSkor = new TextView(this);
-                tvSkor.setText("Loss Score: " + String.format(Locale.US, "%.4f", opsi.optDouble("skor", 0)));
-                tvSkor.setTextSize(11);
-                tvSkor.setTextColor(getResources().getColor(R.color.text_secondary));
-                tvSkor.setPadding(0, 2, 0, 8);
-                opsiBox.addView(tvSkor);
-
-                tambahBarisMenu(opsiBox, "Sarapan", opsi.optString("sarapan", "-"), opsi.optDouble("sarapan_kkal", 0));
-                tambahBarisMenu(opsiBox, "Makan Siang", opsi.optString("makan_siang", "-"), opsi.optDouble("makan_siang_kkal", 0));
-                tambahBarisMenu(opsiBox, "Makan Malam", opsi.optString("makan_malam", "-"), opsi.optDouble("makan_malam_kkal", 0));
-                tambahBarisMenu(opsiBox, "Snack", opsi.optString("snack", "-"), opsi.optDouble("snack_kkal", 0));
-
-                TextView tvTotal = new TextView(this);
-                tvTotal.setText("Total: " + formatKkal(opsi.optDouble("total_kkal", 0)) + " kkal");
-                tvTotal.setTextSize(13);
-                tvTotal.setTypeface(null, android.graphics.Typeface.BOLD);
-                tvTotal.setTextColor(getResources().getColor(R.color.user_primary));
-                tvTotal.setGravity(Gravity.END);
-                tvTotal.setPadding(0, 10, 0, 0);
-                opsiBox.addView(tvTotal);
-
-                content.addView(opsiBox);
+                tambahCardOpsiDialog(content, opsi, i == 0);
             }
         }
 
         scrollView.addView(content);
 
-        root.addView(scrollView, new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams scrollParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 0,
                 1f
-        ));
-
-        AppCompatButton btnTutup = new AppCompatButton(this);
-        btnTutup.setText("TUTUP");
-        btnTutup.setTextColor(Color.WHITE);
-        btnTutup.setBackgroundResource(R.drawable.btn_biru);
-
-        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        btnParams.setMargins(0, 16, 0, 0);
-        root.addView(btnTutup, btnParams);
 
-        btnTutup.setOnClickListener(v -> dialog.dismiss());
+        outer.addView(scrollView, scrollParams);
 
-        dialog.setContentView(root);
+        dialog.setContentView(outer);
         dialog.show();
 
         Window window = dialog.getWindow();
@@ -2235,6 +2520,109 @@ public class Rekomendasi extends AppCompatActivity {
             window.setLayout(width, height);
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
+    }
+
+    private void tambahCardOpsiDialog(LinearLayout parent, JSONObject opsi, boolean utama) {
+        androidx.cardview.widget.CardView card = new androidx.cardview.widget.CardView(this);
+        card.setRadius(dpToPx(18));
+        card.setCardElevation(dpToPx(2));
+        card.setUseCompatPadding(true);
+        card.setCardBackgroundColor(Color.WHITE);
+
+        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        cardParams.setMargins(0, 0, 0, dpToPx(12));
+
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(dpToPx(16), dpToPx(14), dpToPx(16), dpToPx(14));
+
+        LinearLayout top = new LinearLayout(this);
+        top.setOrientation(LinearLayout.HORIZONTAL);
+        top.setGravity(Gravity.CENTER_VERTICAL);
+
+        TextView tvOpsi = new TextView(this);
+        tvOpsi.setText("Opsi " + opsi.optInt("rekomendasi_ke", 0));
+        tvOpsi.setTextSize(15);
+        tvOpsi.setTypeface(null, Typeface.BOLD);
+        tvOpsi.setTextColor(getResources().getColor(R.color.text_primary));
+
+        LinearLayout.LayoutParams opsiParams = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+
+        top.addView(tvOpsi, opsiParams);
+
+        if (utama) {
+            TextView badge = new TextView(this);
+            badge.setText("Terbaik");
+            badge.setTextSize(10);
+            badge.setTypeface(null, Typeface.BOLD);
+            badge.setTextColor(0xFF047857);
+            badge.setGravity(Gravity.CENTER);
+            badge.setPadding(dpToPx(10), dpToPx(5), dpToPx(10), dpToPx(5));
+            badge.setBackground(buatRoundDrawable(0xFFD1FAE5, dpToPx(20)));
+            top.addView(badge);
+        }
+        box.addView(top);
+
+        tambahBarisMenuModern(box, "🍳", "Sarapan", opsi, "sarapan");
+        tambahBarisMenuModern(box, "🍱", "Makan Siang", opsi, "makan_siang");
+        tambahBarisMenuModern(box, "🍽️", "Makan Malam", opsi, "makan_malam");
+        tambahBarisMenuModern(box, "🍎", "Cemilan", opsi, "snack");
+
+        LinearLayout totalBox = new LinearLayout(this);
+        totalBox.setOrientation(LinearLayout.HORIZONTAL);
+        totalBox.setGravity(Gravity.CENTER_VERTICAL);
+        totalBox.setPadding(dpToPx(14), dpToPx(10), dpToPx(14), dpToPx(10));
+        totalBox.setBackground(buatRoundDrawable(utama ? 0xFFF0FDF4 : 0xFFEFF6FF, dpToPx(16)));
+
+        LinearLayout.LayoutParams totalParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        totalParams.setMargins(0, dpToPx(8), 0, 0);
+
+        TextView label = new TextView(this);
+        label.setText("Total");
+        label.setTextSize(13);
+        label.setTypeface(null, Typeface.BOLD);
+        label.setTextColor(getResources().getColor(R.color.text_primary));
+
+        TextView value = new TextView(this);
+        value.setText(formatKkal(opsi.optDouble("total_kkal", 0)) + " kkal");
+        value.setTextSize(14);
+        value.setTypeface(null, Typeface.BOLD);
+        value.setTextColor(getResources().getColor(R.color.user_primary));
+
+        LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+
+        totalBox.addView(label, labelParams);
+        totalBox.addView(value);
+
+        box.addView(totalBox, totalParams);
+
+        tambahRingkasanGizi(box, opsi);
+
+        double skor = opsi.optDouble("skor", 0);
+        TextView tvSkor = new TextView(this);
+        tvSkor.setText("Loss Score: " + String.format(Locale.US, "%.4f", skor));
+        tvSkor.setTextSize(11);
+        tvSkor.setTextColor(getResources().getColor(R.color.text_secondary));
+        tvSkor.setGravity(Gravity.END);
+        tvSkor.setPadding(0, dpToPx(8), 0, 0);
+        box.addView(tvSkor);
+
+        card.addView(box);
+        parent.addView(card, cardParams);
     }
 
     private void tampilkanInfoFisikDariServer(JSONObject infoFisik) {
@@ -2415,6 +2803,41 @@ public class Rekomendasi extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    private void tambahInfoGizi(LinearLayout parent, JSONObject data) {
+        double protein = data.optDouble("total_protein", 0);
+        double karbohidrat = data.optDouble("total_karbohidrat", 0);
+        double lemak = data.optDouble("total_lemak", 0);
+        double serat = data.optDouble("total_serat", 0);
+        double gula = data.optDouble("total_gula", 0);
+        double natrium = data.optDouble("total_natrium", 0);
+
+        TextView tvGizi = new TextView(this);
+        tvGizi.setText(
+                "Protein: " + formatSatuAngka(protein) + " g\n" +
+                        "Karbohidrat: " + formatSatuAngka(karbohidrat) + " g\n" +
+                        "Lemak: " + formatSatuAngka(lemak) + " g\n" +
+                        "Serat: " + formatSatuAngka(serat) + " g\n" +
+                        "Gula: " + formatSatuAngka(gula) + " g\n" +
+                        "Natrium: " + formatSatuAngka(natrium) + " mg"
+        );
+        tvGizi.setTextSize(11);
+        tvGizi.setTextColor(getResources().getColor(R.color.text_secondary));
+        tvGizi.setPadding(12, 10, 12, 10);
+        tvGizi.setBackgroundColor(0xFFF9FAFB);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 10, 0, 0);
+
+        parent.addView(tvGizi, params);
+    }
+
+    private String formatSatuAngka(double value) {
+        return String.format(Locale.US, "%.1f", value);
     }
 
     private void tampilkanListPenyakitCheckbox(
